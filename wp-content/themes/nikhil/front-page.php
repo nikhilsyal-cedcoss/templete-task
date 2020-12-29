@@ -141,103 +141,10 @@ get_header();
               <div class="row">
               <ul id="slider-id" class="slider-class">
               <div class="col-lg-12">
-                  <div class="sidebar-item search">
-                    <form id="search_form" name="gs" method="GET" action="#">
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
-                    </form>
-                  </div>
+              <div class="sidebar-item search recent-posts">
+        <?php get_sidebar();?>
                 </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item recent-posts">
-                    <div class="sidebar-heading">
-                      <h2>Recent Posts</h2>
-                      </div>
-                    <div class="content">
-    <?php
-    $recent_posts = wp_get_recent_posts(array(
-        'numberposts' => 4, // Number of recent posts thumbnails to display
-        'post_status' => 'publish' // Show only the published posts
-    ));
-    
-    foreach($recent_posts as $post) : ?>
-       
-                    
-                      <ul>
-                        <li><a href="<?php echo get_permalink($post['post_title']) ?>">
-                          <h5><?php echo $post['post_title'] ?></h5>
-                          <span><?php echo $post['date'] ?></span>
-                        </a>
-                    </li>
-                 
-                 
-        
-           
-    <?php endforeach; wp_reset_query(); ?>
-    </ul>
-                    </div>
-                  </div>
-                </div>
-
                
-
-                <div class="col-lg-12">
-                  <div class="sidebar-item categories">
-                    <div class="sidebar-heading">
-                      <h2>Categories</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                          <?php 
-                $categories = get_categories( array(
-                    'orderby' => 'name',
-                    'order'   => 'ASC'
-                ) );
-                
-                foreach( $categories as $category ) {
-                    $category_link = sprintf( 
-                        '<a href="%1$s" alt="%2$s">%3$s</a>',
-                        esc_url( get_category_link( $category->term_id ) ),
-                        esc_attr( sprintf( __( 'View all posts in %s', 'textdomain' ), $category->name ) ),
-                        esc_html( $category->name )
-                    );
-                    
-                    echo '<p>' . sprintf( esc_html__( 'Category: %s', 'textdomain' ), $category_link ) . '</p> ';
-                    echo '<p>' . sprintf( esc_html__( 'Description: %s', 'textdomain' ), $category->description ) . '</p>';
-                    echo '<p>' . sprintf( esc_html__( 'Post Count: %s', 'textdomain' ), $category->count ) . '</p>';
-} ?>
-
-                      
-                       
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="sidebar-item tags">
-                    <div class="sidebar-heading">
-                      <h2>Tag Clouds</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                      <?php $blog_posts = new WP_Query( array( 'post_type' => 'post', 'post_status’' => 'publish', 'posts_per_page' => 3 ) );?>
-                      <?php if ( $blog_posts->have_posts() ) : ?>
-                     <?php while ( $blog_posts->have_posts() ) : $blog_posts->the_post(); ?>
-                      <?php
-                      
-                        $posttags = get_the_tags();
-                        if ($posttags) {
-                        foreach($posttags as $tag) {
-                           echo'<li><a href="#">'.$tag->name.'</a></li>';
-                           
-                        }
-                        }
-                        ?>
-                           <?php endwhile; ?>
-                          <?php endif; ?>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -245,4 +152,5 @@ get_header();
       </div>
     </section>
     <?php
+   
 get_footer();

@@ -9,6 +9,9 @@
 
 get_header();
 ?>
+<div class="container">
+<div class="row">
+<div class="col-lg-8">
 
 	<main id="primary" class="site-main">
 
@@ -47,7 +50,22 @@ get_header();
 		?>
 
 	</main><!-- #main -->
-
+</div>
+<div class="col-lg-4">
+<div class="sidebar">
+              <div class="row">
+              <ul id="slider-id" class="slider-class">
+              <div class="col-lg-12">
+              <div class="sidebar-item search recent-posts">
+        <?php get_sidebar();?>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+</div>
+</div>
+</div>
 <?php
-get_sidebar();
+
 get_footer();

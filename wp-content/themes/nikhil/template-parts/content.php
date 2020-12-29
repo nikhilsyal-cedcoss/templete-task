@@ -28,11 +28,27 @@
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-
-	<?php nikhil_post_thumbnail(); ?>
-
-	<div class="entry-content">
-		<?php
+	<section class="blog-posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+			    
+			  <div class="col-lg-12">
+                <div class="blog-post">
+                    <div class="blog-thumb">
+					<?php nikhil_post_thumbnail(); ?>
+                    </div>
+                    <div class="down-content">
+                      <span><?php the_title(); ?></span>
+                      <a href="post-details.php"><h4><?php the_category(', '); ?></h4></a>
+                      <ul class="post-info">
+                      <li><a href="#"><?php the_author();?></a></li>
+                  <li><a href="#"><?php the_date();?></a></li>
+                  <li><a href="#"><?php comments_number(); ?></a></li>
+                      </ul>
+                      	<?php
 		the_content(
 			sprintf(
 				wp_kses(
@@ -55,6 +71,56 @@
 			)
 		);
 		?>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <?php
+                                                $posttags = get_the_tags();
+                                                if ($posttags) {
+                                                foreach($posttags as $tag) {
+                                                    echo '<li><a>'.$tag->name .'</a>,</li>'; 
+                                                }
+                                                }
+                                                ?>
+                              
+                            </ul>
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="#">Facebook</a>,</li>
+                              <li><a href="#"> Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+            
+              </div>
+            </div>
+          </div>
+
+		  <div class="col-lg-4">
+            <div class="sidebar">
+              <div class="row">
+              <ul id="slider-id" class="slider-class ">
+              <div class="col-lg-12">
+                  <div class="sidebar-item search recent-posts">
+                  <?php get_sidebar();?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+	<div class="entry-content">
+
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
